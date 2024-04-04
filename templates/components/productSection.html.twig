@@ -1,0 +1,30 @@
+
+<div class="bg-white">
+  <div class="mx-auto max-w-6xl px-4">
+    
+    <div class="flex gap-4 w-full">
+
+    {% for oneProduct in product %}
+
+      <div class="group relative">
+        <div class="h-80 w-80 p-10 bg-base-200 rounded-box flex justify-center items-center">
+          <img src="/uploads/{{ oneProduct.image }}" class="h-60">
+        </div>
+        <div class="mt-4 flex justify-between">
+          <div>
+            <h3 class="text-sm text-gray-700">
+              <a href="{{ path('app_product_details', {'slug' : oneProduct.slug }) }}">
+                <span aria-hidden="true" class="absolute inset-0"></span>
+                {{ oneProduct.name }}
+              </a>
+            </h3>
+            <p class="mt-1 text-sm text-gray-500">{{ oneProduct.author }}</p>
+          </div>
+          <p class="text-sm font-medium text-gray-900">{{ oneProduct.offerprice }}€</p>
+        </div>
+      </div>
+{% endfor %}
+      <!-- More products... -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name}}{% endblock %}
+
+{% block body %}
+
+{% include 'components/navbar.html.twig' %}
+
+{% set percentageDifference = ((product.originalprice - product.offerprice) / product.originalprice) * 100 %}
+{% set roundedPercentage = percentageDifference | round %}
+
+<div class="bg-white">
+
+    <!-- Product info -->
+    <div class="mx-auto max-w-6xl px-4 pb-16 pt-10">
+    
+        <div class="my-4">
+            <a href="{{ previousPageUrl }}" aria-current="page" class="font-medium text-sm text-gray-500 hover:text-gray-600">< Previous page</a>
+        </div>
+
+        <div class="w-full grid grid-cols-2">
+
+            <div class="bg-gray-200 w-full h-full flex justify-center items-center">
+                <div class="overflow-hidden block m-4 max-w-64">
+                    <img src="/uploads/{{ product.image }}" class="object-cover object-center">
+                </div>
+            </div>
+
+            <div class="ml-4 flex flex-col">
+                <div class="">
+                    <h1 class="text-4xl font-bold tracking-tight text-gray-900">{{ product.name }}</h1>
+
+                    <div class="flex">
+                    <p class="text-1xl tracking-tight text-gray-900">by</p>
+                    <p class="text-1xl font-bold tracking-tight text-gray-900 ml-1">{{ product.author }}</p>
+                    <p class="text-1xl tracking-tight text-gray-900 ml-1">| {{ product.ulpoaddate|date('Y-m-d') }}</p>
+                    </div>
+
+                    <div class="flex text-sm mt-20">
+                        <p class="tracking-tight text-gray-900">Retail price : </p>
+                        <p class="tracking-tight text-gray-900 line-through ml-1">{{ product.originalprice}}€</p>
+                    </div>
+                    
+                    <div class="flex items-baseline">
+                    <p class="text-3xl tracking-tight text-gray-900">{{ product.offerprice}}€</p>
+                    <p class="text-sm tracking-tight text-red-600 font-bold ml-1">{{ roundedPercentage }}% off</p>
+                    </div>
+
+                    <div class="flex items-baseline mt-4">
+                    <p class="tracking-tight text-gray-900">State :</p>
+                    <p class="tracking-tight text-gray-900 font-bold ml-1">{{ product.state }}</p>
+                    </div>
+                </div>
+
+
+                <form class="mt-10 h-full flex items-end">
+                    <button type="submit" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+                </form>
+            </div>
+
+        </div>
+
+
+        <div class="py-10 w-full pb-16 pr-8 pt-6">
+            <!-- Description and details -->
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900 border-b-2 border-gray-200 pb-4">Description</h3>
+
+                <div class="space-y-6">
+                    <p class="text-sm text-gray-600">{{ product.description | raw }}</p>
+                </div>
+            </div>
+
+                <div class="mt-4">
+                    <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
+                        <li>
+                            <span class="text-gray-600 font-semibold">Series :</span>
+                            <span class="text-gray-600 ml-1">{{ product.series }}</span>
+                        </li>
+                        <li>
+                            <span class="text-gray-600 font-semibold">Author :</span>
+                            <span class="text-gray-600 ml-1">{{ product.author }}</span>
+                        </li>
+                        <li>
+                            <span class="text-gray-600 font-semibold">Publisher :</span>
+                            <span class="text-gray-600 ml-1">{{ product.editor }}</span>
+                        </li>
+                        <li>
+                            <span class="text-gray-600 font-semibold">Type :</span>
+                            <span class="text-gray-600 ml-1">{{ product.type }}</span>
+                        </li>
+                        <li>
+                            <span class="text-gray-600 font-semibold">Volumes :</span>
+                            <span class="text-gray-600 ml-1">{{ product.volumes }}</span>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block body %}
+
+{% include 'components/navbar.html.twig' %}
+
+<div class="hero h-72" style="background-image: url(https://www.techlounge.net/wp-content/uploads/2022/09/japanese-manga-4.jpg);">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-center text-neutral-content">
+    <div class="max-w-lg">
+      <h1 class="mb-5 text-5xl font-bold">Need something ?</h1>
+      <p class="mb-5">
+        Dive into a realm where we've gathered all manga genres under one roof. From action-packed adventures to heartwarming romances, we've got something for every manga enthusiast.
+      </p>
+    <label class="input input-bordered flex items-center gap-2">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70"><path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" /></svg>
+        <input type="text" class="grow" placeholder="Search" />
+        
+    </label>
+    </div>
+  </div>
+</div>
+
+
+<div class="bg-white">
+  <div>
+  {{form(form)}}
+
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900">Gallery</h1>
+
+
+        <div class="flex items-center">
+
+          <div class="relative inline-block text-left">
+            <div>
+              <details class="dropdown">
+                <summary class="m-1 btn">Sort</summary>
+                <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                    <li><a>Price (to lowest)</a></li>
+                    <li><a>Price (to highest) </a></li>
+                    <li><a>Item 2</a></li>
+                    <li><a>Item 2</a></li>
+                </ul>
+                </details>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="flex mb-14 mt-6">
+        <ul class="menu bg-base-200 w-56 rounded-box">
+            <li><a>Item 1</a></li>
+            <li>
+                <details open>
+                <summary>Type</summary>
+                <ul>
+                    <li><a>Shonen</a></li>
+                    <li><a>Shojo</a></li>
+                    <li><a>Seinen</a></li>
+                    <li><a>Josei</a></li>
+                    <li><a>Kodomo</a></li>
+                    <li><a>Dojinshi</a></li>
+                    <li><a>Yaoi</a></li>
+                    <li><a>Yuri</a></li>
+                    <li><a>Hentai</a></li>
+                </ul>
+                </details>
+            </li>
+            <li><a>Item 3</a></li>
+            </ul>
+
+
+            <div class="grid grid-cols-1 gap-x-8 gap-y-10 bg-green-400">
+                {% include 'components/productSection.html.twig' %}
+            </div>
+      </div>
+
+        
+
+    </main>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+
