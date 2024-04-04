@@ -14,34 +14,12 @@ class ProductController extends AbstractController
 {
 
     #[Route('/product/gallery', name: 'app_gallery')]
-    public function gallery(EntityManagerInterface $entityManager, Request $request): Response
-    {
-        // Create a form instance
-        $form = $this->createForm(ProductType::class);
+    public function gallery(EntityManagerInterface $entityManager, Request $request): Response{
+        $product = $entityManager->getRepository(Products::class)->findAll();
 
-        // Handle form submission
-        $form->handleRequest($request);
-        
-        // Initialize products variable
-        $products = [];
-
-        // Check if form is submitted and valid
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Get form data
-            $formData = $form->getData();
-            
-            // Fetch products based on form data
-            $products = $entityManager->getRepository(Products::class)->findBy($formData);
-        } else {
-            // If form is not submitted or not valid, fetch all products
-            $products = $entityManager->getRepository(Products::class)->findAll();
-}
-        
-        // Render the gallery template with form and products
-            return $this->render('product/gallery.html.twig', [
-                'form' => $form->createView(),
-            'products' => $products,
-            ]);
+        return $this->render('product/gallery.html.twig', [
+            'product' => $product,
+        ]);
     }
 
 

@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(EntityManagerInterface $entityManager): Response
     {
-$product = $entityManager->getRepository(Products::class)->findAll();
+        $product = $entityManager->getRepository(Products::class)->findAll();
 
         return $this->render('home/index.html.twig', [
             'product' => $product,
